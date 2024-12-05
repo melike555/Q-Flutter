@@ -1,2 +1,3 @@
-# Q-Flutter
-İstinye Üniverstiy Student Projekts
+# flutter_app
+
+A new Flutter project.
