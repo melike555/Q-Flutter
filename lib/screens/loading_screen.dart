@@ -1,10 +1,11 @@
-// acilis ekranimiz buraya gelicek
+// açılış ekranımız buraya gelicek.
+
 import 'package:dotlottie_loader/dotlottie_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_app/core/routes.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
-
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({super.key});
@@ -12,9 +13,9 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 233, 116, 155),
+      backgroundColor: Colors.white,
       body: SizedBox.expand(
-        // width: double.infinity,
+        //width: double.infinity,
         child: Column(
           children: [
             // Logo bölümü
@@ -23,33 +24,35 @@ class LoadingScreen extends StatelessWidget {
                 width: 150,
                 height: 150,
                 child: Image.asset(
-                  'assets/langugaes/logo.png',
+                  'assets/images/women.webp',
                   fit: BoxFit.contain,
                 ),
               ),
             ),
-
+            
+           
+            
             // Yükleniyor yazısı
-             CircularProgressIndicator(),
-
+           // CircularProgressIndicator(),
             InkWell(
               onTap: () => context.go("/home"),
               child: SizedBox(
-                width: 300,
-                child: DotLottieLoader.fromAsset(
-                  "assets/motions/animasyon.lottie",
-                  frameBuilder: (BuildContext ctx, DotLottie? dotlottie) {
+                width: 180,
+                child: DotLottieLoader.fromAsset("assets/motions/qL49XKVJnV.lottie",
+                      frameBuilder: (BuildContext ctx, DotLottie? dotlottie) {
                     if (dotlottie != null) {
                       return Lottie.memory(dotlottie.animations.values.single);
                     } else {
                       return Container();
                     }
-                  },
-                ),
+                  }),
               ),
             ),
-            // biraz boslok lazim
-            SizedBox(height: 20),
+          
+          //Biraz boşluk
+
+           SizedBox(height: 20),
+
           ],
         ),
       ),
