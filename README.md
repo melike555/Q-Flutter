@@ -131,7 +131,12 @@ lib/
 
 ## Ekran Görüntüleri
 
-[Uygulama ekran görüntüleri buraya eklenecek]
+[![alt text](<assets/images/Ekran görüntüsü 2025-01-30 220316.png>)]
+![alt text](<assets/images/Ekran görüntüsü 2025-01-30 220316.png>)
+![alt text](<assets/images/Ekran görüntüsü 2025-01-30 220411.png>)
+![alt text](<assets/images/Ekran görüntüsü 2025-01-30 220447.png>)
+![alt text](<assets/images/Ekran görüntüsü 2025-01-30 220538.png>)
+![alt text](<assets/images/Ekran görüntüsü 2025-01-30 220606.png>)
 
   
 
