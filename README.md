@@ -138,8 +138,7 @@ lib/
 ![alt text](<assets/images/Ekran görüntüsü 2025-01-30 220538.png>)
 ![alt text](<assets/images/Ekran görüntüsü 2025-01-30 220606.png>)
 
-
-<!-- Failed to upload "flutterprojevideo.mp4" -->
+https://github.com/user-attachments/assets/40495263-7129-4a43-8732-6817e636478d
 
 ## Projeye Katkı Sağlama
 
