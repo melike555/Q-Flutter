@@ -1,5 +1,15 @@
+import 'package:dotlottie_loader/dotlottie_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
+
+import '../core/constants.dart';
+import '../core/themes.dart';
+import '../main.dart';
+import '../widgets/bottom_menu.dart';
+import '../widgets/suggested_action_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,95 +17,135 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // AppBar
       appBar: AppBar(
-        title: const Text('Ana Sayfa'),
+        title: Text(
+          'FitHayata Hoşgeldiniz!',
+          style: Theme.of(context).textTheme.headlineMedium, // Theme kullanımı
+        ),
         actions: [
           IconButton(
-            icon: const Icon(CupertinoIcons.bell),
-            onPressed: () {},
+            icon: Icon(CupertinoIcons.moon),
+            onPressed: () {
+              context.read<ThemeProvider>().toggleTheme(); // Tema değiştirici eklendi
+            },
+          ),
+          TextButton(
+            onPressed: () {
+              context.go("/login");
+            },
+            child: Text(
+              'Sign In',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: Theme.of(context).colorScheme.onSecondary,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ],
       ),
 
-      // Drawer (Yan Menü)
       drawer: Drawer(
-        child: Column(
+        child: ListView(
+          padding: EdgeInsets.zero,
           children: [
-            // Drawer Header
-            Container(
-              height: 200,
-              color: Colors.blue,
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary, // Theme kullanımı
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(
-                    CupertinoIcons.person_circle,
-                    size: 80,
-                    color: Colors.white,
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundColor: Theme.of(context).colorScheme.onPrimary,
+                    child: Icon(
+                      CupertinoIcons.person_circle,
+                      size: 60,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'Kullanıcı Adı',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
+                  SizedBox(height: 10),
+                  Text(
+                    'Hoşgeldiniz!',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.onPrimary,
                     ),
                   ),
                 ],
               ),
             ),
-            // Menü öğeleri
             ListTile(
-              leading: const Icon(CupertinoIcons.home),
-              title: const Text('Ana Sayfa'),
-              onTap: () {
-                Navigator.pop(context);
-              },
+              leading: Icon(CupertinoIcons.home, color: Theme.of(context).colorScheme.onSurface),
+              title: Text('Ana Sayfa', style: Theme.of(context).textTheme.bodyMedium),
+              onTap: () => Navigator.pop(context),
             ),
             ListTile(
-              leading: const Icon(CupertinoIcons.settings),
-              title: const Text('Ayarlar'),
-              onTap: () {
-                Navigator.pop(context);
-              },
+              leading: Icon(CupertinoIcons.heart, color: Theme.of(context).colorScheme.onSurface),
+              title: Text('Favoriler', style: Theme.of(context).textTheme.bodyMedium),
+              onTap: () => context.push("/favoriler"),
+            ),
+            ListTile(
+              leading: Icon(CupertinoIcons.settings, color: Theme.of(context).colorScheme.onSurface),
+              title: Text('Ayarlar', style: Theme.of(context).textTheme.bodyMedium),
+              onTap: () => context.push("/settings"),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 385),
+            ),
+            /*Divider(),
+            ListTile(
+              leading: Icon(Icons.logout, color: Theme.of(context).colorScheme.onError),
+              title: Text('Çıkış Yap', style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Theme.of(context).colorScheme.onError)),
+              onTap: () => context.go("/login"),
+            ),*/
+
+          ListTile(
+  leading: Icon(Icons.logout, color: Theme.of(context).colorScheme.onSecondary),
+  title: Text(
+    'Çıkış Yap',
+    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+      color: Theme.of(context).colorScheme.onSecondary, // Hata rengine uyumlu
+    ),
+  ),
+  onTap: () => context.go("/login"),
+),
+
+
+          ],
+        ),
+      ),
+
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              flex: 2,
+              child: Container(
+                alignment: Alignment.topCenter,
+                padding: const EdgeInsets.only(top: 24),
+                child: SizedBox(
+                  width: 200,
+                  height: 200,
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: DotLottieLoader.fromAsset(
+                      "assets/motions/n1AB2T1xLr.lottie",
+                      frameBuilder: (context, dotlottie) {
+                        if (dotlottie != null) {
+                          return Lottie.memory(dotlottie.animations.values.single);
+                        }
+                        return const SizedBox();
+                      },
+                    ),
+                  ),
+                ),
+              ),
             ),
           ],
         ),
       ),
 
-      // Ana içerik
-      body: Column(
-        children: [
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              child: const Text('Ana Sayfa İçeriği'),
-            ),
-          ),
-        ],
-      ),
-
-      // Alt navigasyon çubuğu
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.home),
-            label: 'Ana Sayfa',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.search),
-            label: 'Keşfet',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.person),
-            label: 'Profil',
-          ),
-        ],
-        onTap: (index) {
-          // Navigasyon işlemleri buraya gelecek
-        },
-      ),
+      bottomNavigationBar: BottomMenu(),
     );
   }
 }
